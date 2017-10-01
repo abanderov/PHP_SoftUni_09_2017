@@ -12,8 +12,8 @@ $output= '';
 if (isset($operation)){
     if ($operation == 'sum') {
         $output = 'The sum is ' . ($inputNumberOne + $inputNumberTwo);
-    } elseif ($operation == 'substract') {
-        $output = 'After substraction' . ($inputNumberOne - $inputNumberTwo);
+    } elseif ($operation == 'subtract') {
+        $output = 'After subtraction' . ($inputNumberOne - $inputNumberTwo);
     } else {
         $output = 'Wrong';
     }

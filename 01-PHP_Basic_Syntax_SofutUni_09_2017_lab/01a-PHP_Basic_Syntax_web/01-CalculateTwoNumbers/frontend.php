@@ -3,7 +3,7 @@
         Operation:
         <select name="operation">
             <option value="sum">Sum</option>
-            <option value="substract">Substract</option>
+            <option value="subtract">Subtract</option>
         </select>
     </div>
     <div>
@@ -25,3 +25,4 @@
         <input type="submit" name="calculate" value="Submit">
     </div>
 </form>
+

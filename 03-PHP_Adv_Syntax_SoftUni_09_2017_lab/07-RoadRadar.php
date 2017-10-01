@@ -28,8 +28,8 @@ if ($infraction == true){
     echo ' ';
 }
 
-
 function getArea($area){
+    $speedLimit = 0;
     switch ($area){
         case 'motorway':
             $speedLimit = 130;
