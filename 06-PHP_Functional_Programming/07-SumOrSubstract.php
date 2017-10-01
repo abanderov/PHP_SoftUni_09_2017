@@ -6,47 +6,40 @@
  * Time: 11:02
  */
 
-$arr = [];
-$arr [] = [
-    0 => 'sum, 12, 156',
-    1 => 'subtract, 5, 6',
-    2 => 'subtract, 1, 2'
+$input = [
+    ['sum',12, 156],
+    ['subtract',5, 6],
+    ['sum',1, 2],
 ];
 
-$simpleCalc = function ($inputArr){
-    $opSum = function ($a, $b){
-        return $sum = $a+$b;
-    };
-
-    $opSubtract = function ($a, $b){
-    return $sum = $a-$b;
-    };
-    $resultArr =[];
-    foreach ($inputArr as $key => $value){
-        foreach ($value as $str => $text) {
-            $op = explode(', ', $text);
-            $result = ' ';
-            $resultArr = [];
-            if($op[1] <= 100 || $op[2] <= 100) {
-                switch ($op[0]) {
-                    case 'sum':
-                        $result = $opSum($op[1], $op[2]); //echo "sum";//$opSum;
-                        // echo $result;
-                        break;
-                    case 'subtract':
-                        $result = $opSubtract($op[1], $op[2]); //echo "sum";
-                        // echo $result;
-                        //echo "subtr"; //$opSubtract;
-                        break;
-                }
-                $resultArr = $result . ', ';
-                print_r($resultArr);
-            }else {
-                echo 'error';
-            }
+$opSum = function ($a, $b) {
+    return $a + $b;
+};
+$opSubtract = function ($a, $b) {
+    return $a - $b;
+};
+$simpleCalc = function (&$simpleCalc, $input, $i = 0, $output = []) use ($opSum, $opSubtract){
+    if ($i<count($input)){
+        $op = $input[$i][0];
+        $a = $input[$i][1];
+        $b = $input[$i][2];
+        if ($a <0 or $a>100
+            or $b < 0 or $b > 100){
+            $output[] = 'error';
+            return $simpleCalc ($simpleCalc, $input, $i+1, $output);
         }
+        elseif($op == 'sum') {
+            $output[] = $opSum($a, $b);
+            return $simpleCalc ($simpleCalc, $input, $i+1, $output);
+        }
+        elseif ($op == 'subtract') {
+            $output[] = $opSubtract($a, $b);
+            return $simpleCalc($simpleCalc, $input, $i+1, $output);
+        }
+    }else{
+        return $output;
     }
 };
-
-print_r($simpleCalc($arr));
-
+//
+$output = $simpleCalc($simpleCalc,$input);
+print_r($output);
