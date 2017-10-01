@@ -11,19 +11,27 @@ $inputOperation = $_POST['operation'];
 $inputA = $_POST['num1'];
 $inputB = $_POST['num2'];
 $resultAB = '';
-if (isset($operation)){
+
+$simpleCalc = function (&$simpleCalc, $num1, $num2, $output = 0, $operation) {
+    $opSum = function ($a, $b) {
+        return $a + $b;
+    };
+    $opSubtract = function ($a, $b) {
+        return $a - $b;
+    };
     if ($operation == 'sum') {
-        $resultAB = $inputA + $inputB;
-    } elseif ($operation == 'subtract') {
-        $resultAB = $inputA - $inputB;
-    } elseif ($operation == 'divide') {
-        $resultAB = $inputA / $inputB;
-    }elseif ($operation == 'multiply') {
-        $resultAB = $inputA * $inputB;
+        $output = $opSum($num1, $num2);
+        return $simpleCalc ($simpleCalc, $num1, $num2, $output);
+    }elseif ($operation == 'subtract') {
+        $output = $opSubtract($num1, $num2);
+        return $simpleCalc($simpleCalc, $num1, $num2, $output);
     }else{
-        $resultAB = 'Wrong';
+        return $output;
     }
-}
+};
+//
+$resultAB = $simpleCalc($simpleCalc, $inputA, $inputB, $resultAB, $inputOperation);
+print_r($resultAB);
 
 
 include 'frontend.php';

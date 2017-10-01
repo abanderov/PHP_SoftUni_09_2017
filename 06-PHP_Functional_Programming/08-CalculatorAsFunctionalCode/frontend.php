@@ -32,8 +32,6 @@
         <select name="operation">
             <option value = "sum">+</option>
             <option value = "subtract">-</option>
-            <option value = "multiply">*</option>
-            <option value = "divide">/</option>
         </select>
     </div>
     <div>

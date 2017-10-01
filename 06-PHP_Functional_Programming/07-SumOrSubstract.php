@@ -12,13 +12,14 @@ $input = [
     ['sum',1, 2],
 ];
 
-$opSum = function ($a, $b) {
-    return $a + $b;
-};
-$opSubtract = function ($a, $b) {
-    return $a - $b;
-};
-$simpleCalc = function (&$simpleCalc, $input, $i = 0, $output = []) use ($opSum, $opSubtract){
+
+$simpleCalc = function (&$simpleCalc, $input, $i = 0, $output = []){
+    $opSum = function ($a, $b) {
+        return $a + $b;
+    };
+    $opSubtract = function ($a, $b) {
+        return $a - $b;
+    };
     if ($i<count($input)){
         $op = $input[$i][0];
         $a = $input[$i][1];
