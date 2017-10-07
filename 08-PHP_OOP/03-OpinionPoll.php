@@ -23,11 +23,11 @@ class Person {
         $this->age = $age;
     }
 
-    public function getName($name){
+    public function getName(){
         return $this->name;
     }
 
-    public function getAge($age){
+    public function getAge(){
         return $this->age;
     }
 }
